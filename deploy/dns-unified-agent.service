@@ -1,0 +1,19 @@
+[Unit]
+Description=DNS Unified privileged agent
+Requires=dns-unified-agent.socket
+After=network.target
+[Service]
+Type=simple
+User=root
+Group=root
+WorkingDirectory=/opt/dns-unified-control
+ExecStart=/opt/dns-unified-control/.venv/bin/uvicorn duc.agent:app --fd 3 --log-level warning
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=full
+ReadWritePaths=/etc/dns-unified /var/lib/dns-unified
+[Install]
+WantedBy=multi-user.target

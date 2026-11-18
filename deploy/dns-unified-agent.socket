@@ -1,0 +1,10 @@
+[Unit]
+Description=DNS Unified privileged agent socket
+[Socket]
+ListenStream=/run/dns-unified-agent.sock
+SocketMode=0660
+SocketUser=root
+SocketGroup=dns-unified
+RemoveOnStop=yes
+[Install]
+WantedBy=sockets.target

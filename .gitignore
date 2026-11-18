@@ -1,0 +1,41 @@
+# Runtime / local secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.crt
+*.token
+*.credentials
+*.sqlite
+*.sqlite3
+instance.json
+web-auth.json
+totp*
+auth.json
+
+# Python and development
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.coverage
+htmlcov/
+.mypy_cache/
+.ruff_cache/
+
+# Runtime artifacts and local builds
+*.log
+*.pid
+*.sock
+*.bak
+*.tmp
+*.tar.gz
+*.zip
+dist/
+build/
+.DS_Store

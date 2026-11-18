@@ -1,0 +1,20 @@
+[Unit]
+Description=DNS Unified Web UI
+After=network.target dns-unified-agent.socket
+Wants=dns-unified-agent.socket
+[Service]
+User=dns-unified
+Group=dns-unified
+WorkingDirectory=/opt/dns-unified-control
+Environment=DUC_COOKIE_SECURE=0
+ExecStart=/opt/dns-unified-control/.venv/bin/uvicorn duc.web:app --host 127.0.0.1 --port 8088 --no-proxy-headers --log-level warning
+Restart=on-failure
+RestartSec=2
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/dns-unified/mfa
+UMask=0077
+[Install]
+WantedBy=multi-user.target

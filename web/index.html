@@ -1,0 +1,26 @@
+<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DNS Unified Control</title><link rel="stylesheet" href="/app.css"><!-- # DUC_MULTI_ADDON_0101 --><link rel="stylesheet" href="/multi.css"></head>
+<body><div id="login" class="login hidden"><div class="login-card"><div class="logo">◈</div><h1>DNS Unified Control</h1><p>ورود امن به پنل مدیریت سرور خارجی</p>
+<form id="login-form"><label for="password">رمز عبور مدیر</label><input id="password" type="password" minlength="16" autocomplete="current-password" required autofocus><button class="btn primary" type="submit">ادامه</button></form>
+<div id="mfa-enroll" class="hidden mfa-box"><h2>راه‌اندازی احراز هویت دو مرحله‌ای</h2><p>برای ورود به پنل، ابتدا Google Authenticator یا Aegis را آماده کن. راه‌اندازی با رمز عبور به تنهایی، دسترسی به داشبورد نمی‌دهد.</p><button class="btn primary" id="start-enroll" type="button">ساخت کلید TOTP</button><div id="mfa-setup-details" class="hidden"><img id="qr-image" class="qr" alt="کد QR محرمانه برای اتصال برنامه احراز هویت"><p>کد QR را با برنامه احراز هویت اسکن کن؛ یا این کلید را دستی اضافه کن:</p><code id="mfa-secret" class="secret-text" dir="ltr"></code><form id="mfa-activate-form"><label for="activation-code">کد شش‌رقمی برنامه</label><input id="activation-code" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" required dir="ltr"><button class="btn primary" type="submit">تأیید و فعال‌سازی اجباری</button></form></div></div>
+<form id="mfa-verify-form" class="hidden"><h2>مرحله دوم ورود</h2><label for="mfa-code">کد شش‌رقمی TOTP یا کد بازیابی</label><input id="mfa-code" type="text" autocomplete="one-time-code" inputmode="text" maxlength="30" required dir="ltr" placeholder="000000"><button class="btn primary" type="submit">تأیید و ورود</button><p class="dim">کد TOTP هر ۳۰ ثانیه تغییر می‌کند. کدهای بازیابی فقط یک‌بار مصرف‌اند.</p></form>
+<div id="recovery-display" class="hidden mfa-box"><h2>کدهای بازیابی اضطراری</h2><p class="danger-text">این کدها فقط همین یک‌بار نشان داده می‌شوند. آن‌ها را در یک محل آفلاین امن ذخیره کن؛ اگر برنامه احراز هویت را از دست بدهی، برای ورود لازم‌اند.</p><pre id="recovery-codes" class="recovery-codes" dir="ltr"></pre><button class="btn subtle" id="copy-recovery" type="button">کپی کدها</button><button class="btn primary" id="recovery-done" type="button">کدها را ذخیره کردم</button></div>
+<div id="login-error" class="error" role="alert"></div><small>ورود فقط پس از رمز عبور + TOTP یا کد بازیابی کامل می‌شود. برای راه‌اندازی اولیه از HTTPS یا SSH استفاده کن.</small></div></div>
+<div id="app" class="shell hidden"><aside class="sidebar"><header class="brand"><span class="brand-icon">◈</span><div><strong>DNS UNIFIED</strong><small>CONTROL · 0.10.6 · MFA</small></div></header><nav id="nav" aria-label="منوی مدیریت">
+<div class="nav-group">نمای کلی</div>
+<button data-tab="overview" class="selected"><span>▦</span> داشبورد</button>
+<div class="nav-group">تونل و کلاینت</div>
+<button data-tab="engines"><span>◉</span> کنترل موتورها</button>
+<button data-tab="settings"><span>⚙</span> پروفایل موتور</button>
+<button data-tab="workflow"><span>▤</span> کلاینت‌ها</button>
+<button data-tab="methods"><span>◈</span> پروتکل‌ها</button>
+<div class="nav-group">زیرساخت سرور</div>
+<button data-tab="dante"><span>⬡</span> Dante · SOCKS5</button>
+<button data-tab="dns"><span>◎</span> DNS و دامنه‌ها</button>
+<button data-tab="setup"><span>◇</span> نصب و سلامت</button>
+<div class="nav-group">نظارت و امنیت</div>
+<button data-tab="monitor"><span>⌁</span> مانیتورینگ</button>
+<button data-tab="logs"><span>≡</span> گزارش‌ها</button>
+<button data-tab="security"><span>♢</span> امنیت و TOTP</button><button id="ducmulti-nav" type="button"><span>◉</span> Exclusive / Multi</button></nav><div class="sidebar-foot"><span id="nav-host" class="tiny"></span><button id="logout" class="text-btn">خروج از حساب ↗</button></div></aside>
+<main class="main"><div class="top"><div><div class="eyebrow">SERVER CONTROL / EXCLUSIVE + MULTI-ENGINE</div><h1 id="page-title">داشبورد</h1></div><div class="top-right"><span class="status-dot"></span><span id="connection">درحال اتصال...</span><button id="refresh" class="btn subtle">↻ بروزرسانی</button></div></div><div id="flash" class="flash hidden"></div>
+<section id="overview" class="page"></section><section id="engines" class="page hidden"></section><section id="monitor" class="page hidden"></section><section id="logs" class="page hidden"></section><section id="settings" class="page hidden"></section><section id="dns" class="page hidden"></section><section id="methods" class="page hidden"></section><section id="workflow" class="page hidden"></section><section id="dante" class="page hidden"></section><section id="setup" class="page hidden"></section><section id="security" class="page hidden"></section>
+<footer>DNS Unified Control · پنل مدیریت VPS · نصب و آماده‌سازی کلاینت از داخل بخش راه‌اندازی</footer></main></div><script src="/app.js" defer></script><script src="/multi.js" defer></script></body></html>
