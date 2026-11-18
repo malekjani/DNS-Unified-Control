@@ -141,7 +141,7 @@
     "tests/test_guided_installer_0101.py": "118c26b8b4984e4ca8307ce12c1bcd1e02b895dfa736cb99a01f1393d69b3b79",
     "tests/test_lifecycle_0103.py": "b85cf7f169a3ec600d37906bec0aa70424db1b9021147507d82f4645c1c8e31f",
     "tests/test_mfa.py": "46febfc6a7c2c3e871e9289a928b5faa33968e0cb2580b440dc14bfec077f23d",
-    "tests/test_multi_controller_0106.py": "53a15051e4df1657491d200e8dbb0800a026f9d30aa9372e5808761de5d1fb9c",
+    "tests/test_multi_controller_0106.py": "cea66944be7d75370b2c703e1c0195e53e45a8fd6c2477411c31f2d50f224ee4",
     "tests/test_multi_release_0106.py": "780c70d6486b542cb9abc3c6bf0c15977f798ef60e6d7f1033f3382fe81701af",
     "tests/test_multi_router_0106.py": "741cceb3105431295f0261abbea82fa7eef7856424dc196ec7c79180c42fbd4b",
     "tests/test_multicore.py": "688a029462746d11606df28e7b6fbe44932408bf99268d940da184b5330ca101",

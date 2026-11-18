@@ -87,7 +87,8 @@ class SwitchSimTests(ControllerTests):
                      patch.object(controller,'active',side_effect=lambda u:u in running), \
                      patch.object(controller,'unit_enabled',side_effect=lambda u:u in enabled), \
                      patch.object(controller,'await_unit',return_value=True), \
-                     patch.object(controller,'await_listener',return_value=True):
+                     patch.object(controller,'await_listener',return_value=True), \
+                     patch.object(controller.os,'geteuid',return_value=0):
                     r=controller.apply('multi',['master','dnstt'],confirm='yes')
                     if fail_router:
                         self.assertFalse(r['ok'])
